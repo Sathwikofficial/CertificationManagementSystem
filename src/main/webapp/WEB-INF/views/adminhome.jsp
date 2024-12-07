@@ -156,14 +156,15 @@ body {
         <button class="dropdown-btn">Certification Management</button>
         <div class="dropdown-container">
             
+             <a href="#" onclick="loadContent('view_pending_certifications')">Accept Certification</a>
             <a href="#" onclick="loadContent('view_allcertifications')">View Certification</a>
             
             
         </div>
         
-        <a href="#" onclick="loadContent('track_expiration_dates')">Track Expiration Dates</a>
+        <a href="#" onclick="loadContent('monitor_allrenewals')">Track Expiration Dates</a>
         <a href="#" onclick="loadContent('facilitate_renewals')">Facilitate Renewals</a>
-        <a href="#" onclick="loadContent('admin_changepassword')">Change Password</a>
+        
     </div>
 
     <!-- Main Content Area -->

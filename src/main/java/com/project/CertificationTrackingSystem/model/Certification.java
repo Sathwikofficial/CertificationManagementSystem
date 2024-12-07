@@ -14,6 +14,7 @@ public class Certification {
     private String issueDate;
     private String expirationDate;
     private Blob certificationFile;
+    private boolean isActive = false;
     
     // Replacing userId with email
     private String email; // Email of the user associated with the certification
@@ -84,5 +85,12 @@ public class Certification {
 
     public void setCertificateDescription(String certificateDescription) {
         this.certificateDescription = certificateDescription;
+    }
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

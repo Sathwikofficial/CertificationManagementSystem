@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Certifications</title>
+    <title>Accept Certifications</title>
     <style>
         table {
             width: 100%;
@@ -21,8 +21,7 @@
     </style>
 </head>
 <body>
-    <h2>Your Certifications</h2>
-
+    <h2>Pending Certifications</h2>
     <table>
         <thead>
             <tr>
@@ -31,31 +30,36 @@
                 <th>Issue Date</th>
                 <th>Expiration Date</th>
                 <th>Description</th>
-                <th>Download</th>
+                <th>Email</th>
+                
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="cert" items="${certifications}">
-                <c:if test="${cert.active}">
+                <c:if test="${!cert.active}">
                     <tr>
                         <td>${cert.certificationName}</td>
                         <td>${cert.issuedBy}</td>
                         <td>${cert.issueDate}</td>
                         <td>${cert.expirationDate}</td>
                         <td>${cert.certificateDescription}</td>
+                        <td>${cert.email}</td>
+                        
                         <td>
-                            <a href="/user/downloadCertification?certificationId=${cert.certificationId}">Download</a>
-                        </td>
-                        <td>
-                            <a href="/user/edit_certification?certificationId=${cert.certificationId}">Edit</a> |
-                            <a href="/user/delete_certification?certificationId=${cert.certificationId}">Delete</a>
+                            <form action="/admin/accept_certification" method="post" style="display:inline;">
+                                <input type="hidden" name="certificationId" value="${cert.certificationId}">
+                                <button type="submit">Accept</button>
+                            </form>
+                            <form action="/admin/decline_certification" method="post" style="display:inline;">
+                                <input type="hidden" name="certificationId" value="${cert.certificationId}">
+                                <button type="submit">Decline</button>
+                            </form>
                         </td>
                     </tr>
                 </c:if>
             </c:forEach>
         </tbody>
     </table>
-
 </body>
 </html>

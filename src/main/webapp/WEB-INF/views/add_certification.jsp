@@ -1,3 +1,8 @@
+<%@ page import="java.time.LocalDate" %>
+<%
+    // Get the current date in yyyy-MM-dd format
+    String currentDate = LocalDate.now().toString();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,10 +183,10 @@
         <input type="text" id="issuedBy" name="issuedBy" required><br>
 
         <label for="issueDate">Issue Date:</label><br>
-        <input type="date" id="issueDate" name="issueDate" required><br>
+        <input type="date" id="issueDate" name="issueDate" max="<%= currentDate %>" required><br>
 
         <label for="expirationDate">Expiration Date:</label><br>
-        <input type="date" id="expirationDate" name="expirationDate" required><br>
+        <input type="date" id="expirationDate" name="expirationDate" min="<%= currentDate %>" required><br>
 
         <!-- Hidden input to carry the session email -->
         <input type="hidden" name="email" value="<%= request.getAttribute("email") %>">
@@ -195,10 +200,38 @@
         <input type="submit" value="Add Certification">
     </form>
 
-    <div>
-        <span>${message}</span>
-        <span>${error}</span>
-    </div>
-    </div>
+    
+    
+    <c:if test="${not empty message}">
+            <div class="error-message">
+                <c:out value="${message}" />
+            </div>
+        </c:if>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.js"></script>
+    
+    <script>
+        // Fetch the message from the JSP page
+        const message = `<c:out value="${message}" />`.trim();
+
+        // Display toast if the message is not empty
+        if (message) {
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center`, or `right`
+                backgroundColor: "linear-gradient(to right, #4CAF50, #8BC34A)",
+                stopOnFocus: true // Prevent dismiss on hover
+            }).showToast();
+        }
+    </script>
+    
+    
+    
+    
 </body>
+
+
 </html>

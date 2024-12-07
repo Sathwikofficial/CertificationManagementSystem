@@ -31,18 +31,21 @@
                 <th>Issue Date</th>
                 <th>Expiration Date</th>
                 <th>Description</th>
+                <th>Email</th>
                 <th>Download</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach var="cert" items="${certifications}">
+            <c:if test="${cert.active}">
                 <tr>
                     <td>${cert.certificationName}</td>
                     <td>${cert.issuedBy}</td>
                     <td>${cert.issueDate}</td>
                     <td>${cert.expirationDate}</td>
                     <td>${cert.certificateDescription}</td>
+                    <td>${cert.email}</td>
                     <td>
                         <a href="/admin/downloadCertification?certificationId=${cert.certificationId}">Download</a>
                     </td>
@@ -52,6 +55,7 @@
                     </td>
                     
                 </tr>
+                </c:if>
             </c:forEach>
         </tbody>
     </table>

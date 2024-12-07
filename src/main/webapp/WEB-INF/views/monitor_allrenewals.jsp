@@ -21,7 +21,7 @@
     </style>
 </head>
 <body>
-    <h2>Your Renewals DeadLines</h2>
+    <h2>All Renewals DeadLines</h2>
 
     <table>
         <thead>
@@ -31,6 +31,7 @@
                 <th>Issue Date</th>
                 <th>Expiration Date</th>
                 <th>Description</th>
+                <th>Email</th>
                 <th>Download</th>
                 
             </tr>
@@ -44,6 +45,7 @@
                     <td>${cert.issueDate}</td>
                     <td>${cert.expirationDate}</td>
                     <td>${cert.certificateDescription}</td>
+                    <td>${cert.email}</td>
                     <td>
                         <a href="/user/downloadCertification?certificationId=${cert.certificationId}">Download</a>
                     </td>

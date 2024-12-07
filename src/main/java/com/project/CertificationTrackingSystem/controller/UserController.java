@@ -260,12 +260,13 @@ public class UserController {
 
 	        User user = (User) session.getAttribute("user");
 	        String email = user.getEmail();
-	        
-	        // Fetch certifications based on the email
-	        List<Certification> certifications = certificationService.getCertificationsByEmail(email);
+
+	        // Fetch certifications expiring in less than a month
+	        List<Certification> certifications = certificationService.getCertificationsExpiringSoon(email);
 	        model.addAttribute("certifications", certifications);
 	        return "monitor_myrenewals";
 	    }
+
 	    
 	    @GetMapping("user/user_profile")
 	    public String getUserProfile(@RequestParam("email") String email, Model model) {
