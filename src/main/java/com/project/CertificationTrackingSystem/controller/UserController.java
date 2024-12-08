@@ -36,6 +36,24 @@ public class UserController {
 
     @Autowired
     private AdminService adminService;
+    
+    @GetMapping("/")
+    public String home(HttpServletRequest request) {
+    	HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            User user = (User) session.getAttribute("user");
+            Admin admin = (Admin) session.getAttribute("admin");
+
+            if (user != null) {
+                return "redirect:/user/home";
+            } else if (admin != null) {
+                return "redirect:/admin/home";
+            }
+        }
+
+        return "home";  // home.jsp (you can change this to your actual JSP file location)
+    }
 
     @GetMapping("/signup")
     public String showSignupForm(HttpServletRequest request, Model model) {
